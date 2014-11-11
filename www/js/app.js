@@ -47,6 +47,15 @@ angular.module('clo', ['ionic', 'clo.controllers', 'clo.services'])
         }
       }
     })
+	.state('tab.detail', {
+      url: '/detail',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/tab-detail.html',
+          controller: 'DashCtrl'
+        }
+      }
+    })
 
     .state('tab.friends', {
       url: '/friends',
@@ -66,8 +75,7 @@ angular.module('clo', ['ionic', 'clo.controllers', 'clo.services'])
         }
       }
     })
-
-    .state('tab.account', {
+	.state('tab.account', {
       url: '/account',
       views: {
         'tab-account': {

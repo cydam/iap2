@@ -1,0 +1,93 @@
+<ion-view title="Contact Manager Pro">
+  <ion-content class="padding">
+  
+
+<div class="list card">
+	<div>
+	  <div class="item item-avatar">
+		<img src="mcfly.jpg">
+		<h2>{{savedC.displayName}}</h2>
+		<p ng-repeat="pnSubs in savedC.phoneNumbers">{{ pnSubs.type }}: {{ pnSubs.value }}</p>
+	  </div>
+
+	  <div class="item tabs tabs-secondary tabs-icon-left">
+		<a class="tab-item" ng-repeat="pnSubs in savedC.phoneNumbers" href="tel:{{pnSubs.value}}">
+		  <i class="icon ion-android-call"></i>
+		  Call
+		</a>
+		<a class="tab-item" ng-repeat="pnSubs in savedC.phoneNumbers" href="sms:{{pnSubs.value}}">
+		  <i class="icon ion-ios7-paper"></i>
+		  SMS
+		</a>
+		<a class="tab-item" href="mailto:{{}}">
+		  <i class="icon ion-ios7-email"></i>
+		  E-mail
+		</a>
+	  </div>
+	</div>
+</div>
+
+<form name="signup_form" novalidate ng-submit="addContact(saveName,savePhone)">  
+			
+					<div class="list list-inset">	
+							<label class="item item-input" ng-repeat="cItem in savedC">
+												<input type="text" 
+												  placeholder="Name" 
+												  name="pcName" 
+												  ng-model="{{cItem}}" 
+												  ng-minlength=1 ng-maxlength=70 required />
+												<div class="error-container" 
+													 ng-show="signup_form.pcName.$dirty && signup_form.pcName.$invalid">
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.required">
+														 Name is required.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.minlength">
+														  Name is required to be at least 1 character
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.pcName">
+														 That is not a valid name. Please input a valid name.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.maxlength">
+														  Name cannot be longer than 70 characters
+												  </small>
+												</div>
+							</label>
+							<label class="item item-input">
+												<input type="tel" 
+												  placeholder="Phone number" 
+												  name="pcPhone" 
+												  ng-model="savePhone" 
+												  ng-minlength=1 ng-maxlength=70 required />
+												<div class="error-container" 
+													 ng-show="signup_form.pcPhone.$dirty && signup_form.pcPhone.$invalid">
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.required">
+														 Name is required.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.minlength">
+														  Name is required to be at least 1 character
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.pcPhone">
+														 That is not a valid name. Please input a valid name.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.maxlength">
+														  Name cannot be longer than 70 characters
+												  </small>
+												</div>
+							</label>
+					</div>
+					
+											<button type="submit" ng-disabled="signup_form.$invalid" class="button button-outline icon-right ion-checkmark button-positive">Save</button>
+			</form>
+
+<h4>{{savedC}}</h4>
+	
+  </ion-content>
+</ion-view>

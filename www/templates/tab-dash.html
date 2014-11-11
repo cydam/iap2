@@ -1,5 +1,214 @@
-<ion-view title="Dashboard">
+<ion-view title="Contact Manager Pro">
   <ion-content class="padding">
-    <h1>Dash</h1>
+  
+
+<div class="check-element animate-show" ng-hide="checkedSh">
+	<div class="row">
+		
+			<div class="col">
+				<button class="button button-outline button-balanced icon-right ion-loop" ng-click="synchContact()">Synch</button>
+			</div>
+		
+		<div class="col">
+			<ul class="list">
+				  <li class="item item-checkbox">
+					 <label class="checkbox">
+					   <input type="checkbox" ng-model="checkedSh" ng-click="loadContact()">
+					 </label>
+						 
+							Search
+						 
+				  </li>
+			</ul>
+		</div>
+		
+	</div>
+</div>
+
+<div class="check-element animate-show" ng-show="checkedSh">
+	<div class="item item-text-wrap">
+			<ul class="list">
+			  <li class="item item-checkbox">
+				 <label class="checkbox">
+				   <input type="checkbox" ng-model="checkedSh" >
+				 </label>
+				 Search
+			  </li>
+			</ul>
+	  
+	  </div>
+
+	<form class="item item-input-inset">
+						<label class="item-input-wrapper">
+						  <input type="text" ng-model="sInput" size="60" placeholder="Search">
+						</label>
+	</form>	 
+
+	<div class="list">
+	  <a class="item" ng-repeat="tcbFeat in PCL | filter:sInput" ng-click="selContact(tcbFeat)" href="#">{{tcbFeat.displayName}}</a>
+	</div>	
+</div>
+
+
+ <!-- 
+	<div class="list">
+		<form ng-submit="findAContact(sInput)" class="item item-input-inset">
+			<label class="item-input-wrapper">
+			  <input type="text" ng-model="sInput" size="60" placeholder="Search">
+			</label>
+		  <input type="submit" id="submit" class="button button-small button-balanced" value="Search" />
+		</form>
+	</div>
+-->
+	
+	
+<!--	
+<div class="list">	
+	<a class="item item-list" ng-repeat="tcbFeat in PC | filter:sInput" ng-href="#">{{tcbFeat.displayName}}</a>
+</div>
+-->
+
+
+<!-- <h3 ng-repeat="tcbFeat in PC | filter:sInput">{{tcbFeat.displayName}}</h3> -->
+
+
+<!--
+<div class="list card">
+	<div  ng-repeat="tcbFeat in PC | filter:sInput">
+	  <div class="item item-avatar">
+		<img src="mcfly.jpg">
+		<h2>{{tcbFeat.displayName}}</h2>
+		<p ng-repeat="pnSubs in tcbFeat.phoneNumbers">{{ pnSubs.type }}: {{ pnSubs.value }}</p>
+	  </div>
+
+
+	  <div class="item tabs tabs-secondary tabs-icon-left">
+		<a class="tab-item" href="#">
+		  <i class="icon ion-android-call"></i>
+		  Call
+		</a>
+		<a class="tab-item" href="#">
+		  <i class="icon ion-ios7-paper"></i>
+		  SMS
+		</a>
+		<a class="tab-item" href="#">
+		  <i class="icon ion-ios7-email"></i>
+		  E-mail
+		</a>
+	  </div>
+	</div>
+</div>
+-->
+
+<div class="check-element animate-show" ng-hide="checkedSh">
+	<div class="card">
+	  <div class="item item-divider">
+		Save New Contact
+	  </div>
+	  <div class="item item-text-wrap">
+			<form name="signup_form" novalidate ng-submit="addContact(saveName,savePhone)">  
+			
+					<div class="list list-inset">	
+							<label class="item item-input">
+												<input type="text" 
+												  placeholder="Name" 
+												  name="pcName" 
+												  ng-model="saveName" 
+												  ng-minlength=1 ng-maxlength=70 required />
+												<div class="error-container" 
+													 ng-show="signup_form.pcName.$dirty && signup_form.pcName.$invalid">
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.required">
+														 Name is required.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.minlength">
+														  Name is required to be at least 1 character
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.pcName">
+														 That is not a valid name. Please input a valid name.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcName.$error.maxlength">
+														  Name cannot be longer than 70 characters
+												  </small>
+												</div>
+							</label>
+							<label class="item item-input">
+												<input type="tel" 
+												  placeholder="Phone number" 
+												  name="pcPhone" 
+												  ng-model="savePhone" 
+												  ng-minlength=1 ng-maxlength=70 required />
+												<div class="error-container" 
+													 ng-show="signup_form.pcPhone.$dirty && signup_form.pcPhone.$invalid">
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.required">
+														 Name is required.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.minlength">
+														  Name is required to be at least 1 character
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.pcPhone">
+														 That is not a valid name. Please input a valid name.
+												  </small>
+												  <small class="error" 
+														 ng-show="signup_form.pcPhone.$error.maxlength">
+														  Name cannot be longer than 70 characters
+												  </small>
+												</div>
+							</label>
+					</div>
+					
+											<button type="submit" ng-disabled="signup_form.$invalid" class="button button-outline icon-right ion-checkmark button-positive">Save</button>
+			</form>
+		</div>
+	</div>
+</div>							
+
+
+<!--							
+<div class="card">
+  <div class="item item-divider">
+    Save New Contact
+  </div>
+  <div class="item item-text-wrap">
+		<div class="list list-inset">
+		  <label class="item item-input">
+			<input type="text" placeholder="Name" ng-model="saveName">
+		  </label>
+		  <label class="item item-input">
+			<input type="tel" placeholder="Phone" ng-model="savePhone">
+		  </label>
+		</div>
+		<button class="button button-outline icon-right ion-checkmark button-positive" ng-click="addContact(saveName,savePhone)">Save</button>
+  </div>
+</div>
+-->
+
+
+
+			<!--
+			<div class="list">
+				<a class="item item-avatar" ng-href="#" ng-repeat="tcbFeat in PC">
+				  <img src="venkman.jpg">
+				  <h2>{{ tcbFeat.displayName }}</h2>
+				  <p ng-repeat="pnSubs in tcbFeat.phoneNumbers">{{ pnSubs.type }}: {{ pnSubs.value }}</p>
+				</a>
+			</div>
+			-->
+			
+			<!--
+			<div class="card">
+			  <div class="item item-text-wrap" ng-repeat="tcbFeat in PC">
+				{{ tcbFeat }}
+			  </div>
+			</div>
+			-->
+			
+	
   </ion-content>
 </ion-view>
